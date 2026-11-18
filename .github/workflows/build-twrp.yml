@@ -51,6 +51,14 @@ on:
         description: 'KERNEL_DTB_URL (mt6897.dtb prebuilt)'
         required: true
         default: 'https://raw.githubusercontent.com/mt6897-devs/device_xiaomi_duchamp-kernel/lineage-23.2/dtb/mt6897.dtb'
+      VENDOR_OMNI_URL:
+        description: 'VENDOR_OMNI_URL (vendor/omni — tidak ada di manifest minimal)'
+        required: true
+        default: 'https://github.com/omnirom/android_vendor_omni'
+      VENDOR_OMNI_BRANCH:
+        description: 'VENDOR_OMNI_BRANCH'
+        required: true
+        default: 'android-12.1'
 
 jobs:
   build:
@@ -119,6 +127,11 @@ jobs:
     - name: Clone device tree
       run: |
         git clone --depth=1 ${{ github.event.inputs.DEVICE_TREE_URL }} -b ${{ github.event.inputs.DEVICE_TREE_BRANCH }} ./${{ github.event.inputs.DEVICE_PATH }}
+      working-directory: ${{ steps.pwd.outputs.workspace-folder }}
+
+    - name: Clone vendor omni
+      run: |
+        git clone --depth=1 ${{ github.event.inputs.VENDOR_OMNI_URL }} -b ${{ github.event.inputs.VENDOR_OMNI_BRANCH }} ./vendor/omni
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
 
     - name: Fetch prebuilt kernel

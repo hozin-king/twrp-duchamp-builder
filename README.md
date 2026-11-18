@@ -11,7 +11,7 @@ Build TWRP recovery untuk POCO X6 Pro (codename **duchamp**, Dimensity 8300 Ultr
 
 ## Yang dipakai
 
-- Manifest: `minimal-manifest-twrp/platform_manifest_twrp_aosp`, branch `twrp-12.1`
+- Manifest: `minimal-manifest-twrp/platform_manifest_twrp_aosp`, branch `twrp-12.1` (tidak memuat `vendor/omni` — di-clone terpisah dari `omnirom/android_vendor_omni`, branch `android-12.1`)
 - Device tree: `hozin-king/android_device_xiaomi_duchamp` (branch `main`) — fork dari `renton16/android_device_xiaomi_duchamp`, dengan perbaikan: hapus `PRODUCT_STATIC_BOOT_CONTROL_HAL` (obsolete, gagal saat lunch). Perbaikan tree selanjutnya dikumpulkan di fork ini.
 - Kernel prebuilt: `mt6897-devs/device_xiaomi_duchamp-kernel` (`Image.lz4` + `dtb/mt6897.dtb`, branch `lineage-23.2`) — tree publik duchamp tidak menyertakan `prebuilt/kernel`, jadi kernel diambil saat build.
 - Target: `boot` — duchamp A/B memakai `BOARD_USES_RECOVERY_AS_BOOT=true`, jadi recovery hidup di dalam `boot.img` (bukan partisi recovery dan bukan `vendor_boot`).
